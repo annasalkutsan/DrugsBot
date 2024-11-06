@@ -1,4 +1,6 @@
-﻿using Domain.ValueObject;
+﻿using Domain.Validators;
+using Domain.ValueObject;
+using FluentValidation.Results;
 
 namespace Domain.Entities;
 
@@ -10,6 +12,8 @@ public class DrugStore:BaseEntity
         Number = number;
         Address = address;
         PhoneNumber = phoneNumber;
+
+        IsValid();
     }
     
     /// <summary>
@@ -36,4 +40,18 @@ public class DrugStore:BaseEntity
     /// Коллекция товаров в аптеке
     /// </summary>
     public ICollection<DrugItem> DrugItems { get; private set; } = new List<DrugItem>();
+    
+    private bool IsValid()
+    {
+        var validator = new DrugStoreValidator();
+        ValidationResult result = validator.Validate(this);
+
+        if (!result.IsValid)
+        {
+            var errorMessages = string.Join(" ", result.Errors.Select(e => e.ErrorMessage));
+            throw new Exception("Validation failed: " + errorMessages);
+        }
+        
+        return true;
+    }
 }

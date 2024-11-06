@@ -5,7 +5,7 @@ namespace Domain.Validators;
 
 public class DrugValidator:AbstractValidator<Drug>
 {
-    DrugValidator()
+    public DrugValidator()
     {
         RuleFor(d => d.Name)
             .NotNull().WithMessage(ValidationMessage.NotNull)

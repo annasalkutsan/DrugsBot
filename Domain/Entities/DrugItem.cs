@@ -1,4 +1,7 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Validators;
+using FluentValidation.Results;
+
+namespace Domain.Entities;
 
 public class DrugItem : BaseEntity
 {
@@ -10,6 +13,8 @@ public class DrugItem : BaseEntity
         Count = count;
         Drug = drug;
         DrugStore = drugStore;
+
+        IsValid();
     }
     
     /// <summary>
@@ -41,4 +46,18 @@ public class DrugItem : BaseEntity
     /// Количество
     /// </summary>
     public int Count { get; private set; }
+    
+    private bool IsValid()
+    {
+        var validator = new DrugItemValidator();
+        ValidationResult result = validator.Validate(this);
+
+        if (!result.IsValid)
+        {
+            var errorMessages = string.Join(" ", result.Errors.Select(e => e.ErrorMessage));
+            throw new Exception("Validation failed: " + errorMessages);
+        }
+        
+        return true;
+    }
 }

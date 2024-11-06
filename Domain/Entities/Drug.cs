@@ -1,4 +1,7 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Validators;
+using FluentValidation.Results;
+
+namespace Domain.Entities;
 
 /// <summary>
 /// Лекарственный препарат
@@ -11,6 +14,8 @@ public class Drug: BaseEntity
         Manufacturer = manufacturer;
         CountryCodeId = countryCodeId;
         Country = country;
+
+        IsValid();
     }
     
     /// <summary>
@@ -37,4 +42,18 @@ public class Drug: BaseEntity
     /// Коллекция товаров с данным препаратом
     /// </summary>
     public ICollection<DrugItem> DrugItems { get; private set; } = new List<DrugItem>();
+    
+    private bool IsValid()
+    {
+        var validator = new DrugValidator();
+        ValidationResult result = validator.Validate(this);
+
+        if (!result.IsValid)
+        {
+            var errorMessages = string.Join(" ", result.Errors.Select(e => e.ErrorMessage));
+            throw new Exception("Validation failed: " + errorMessages);
+        }
+        
+        return true;
+    }
 }
