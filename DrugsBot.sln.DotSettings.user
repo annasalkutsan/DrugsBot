@@ -1,0 +1,10 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=36c84eb8_002D8aaf_002D43a4_002Daf74_002D1affe75f27dd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="DrugValidatorTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBF7070D-DE60-4B59-952D-DC629332074B::net8.0::DomainTests.DrugValidatorTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBF7070D-DE60-4B59-952D-DC629332074B::net8.0::DomainTests.CountryValidatorTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBF7070D-DE60-4B59-952D-DC629332074B::net8.0::DomainTests.DrugItemValidatorTests.ValidateDrugItem_WithValidData&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBF7070D-DE60-4B59-952D-DC629332074B::net8.0::DomainTests.DrugStoreValidatorTests.ValidateDrugStore_WithValidData_ShouldNotThrowException&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBF7070D-DE60-4B59-952D-DC629332074B::net8.0::DomainTests.DrugStoreValidatorTests.ValidateDrugStore_WithEmptyDrugNetwork_ShouldThrowException&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

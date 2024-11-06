@@ -4,6 +4,11 @@
 /// </summary>
 public abstract class BaseEntity
 {
+    protected BaseEntity()
+    {
+        Id = Guid.NewGuid();
+    }
+    
     /// <summary>
     /// Идентификатор сущности
     /// </summary>
