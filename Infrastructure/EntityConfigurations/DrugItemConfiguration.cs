@@ -23,7 +23,7 @@ public class DrugItemConfiguration : IEntityTypeConfiguration<DrugItem>
         builder
             .HasOne(di => di.DrugStore)
             .WithMany(ds => ds.DrugItems)
-            .HasForeignKey(di => di.DrugstoreId)
+            .HasForeignKey(di => di.DrugStoreId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

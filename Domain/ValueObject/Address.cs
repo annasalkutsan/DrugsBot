@@ -1,6 +1,6 @@
 ﻿namespace Domain.ValueObject;
 
-public class Address
+public class Address: BaseValueObject
 {
     public Address(string city, string street, string house)
     {
@@ -21,4 +21,13 @@ public class Address
     /// Дом
     /// </summary>
     public string House { get; private set; }
+    
+    /// <summary>
+    /// Возвращает строковое представление адреса.
+    /// </summary>
+    /// <returns>Строка, представляющая адрес.</returns>
+    public override string ToString()
+    {
+        return $"{City}, {Street}, {House}";
+    }
 }
