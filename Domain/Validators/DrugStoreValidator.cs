@@ -5,6 +5,9 @@ namespace Domain.Validators;
 
 public class DrugStoreValidator : AbstractValidator<DrugStore>
 {
+    // Статическая коллекция для хранения уникальных номеров аптек
+    private static readonly HashSet<int> ExistingNumbers = new HashSet<int>();
+    
     // Набор поддерживаемых ISO-кодов стран
     private static readonly HashSet<string> ValidIsoCodes = new HashSet<string>
     {
@@ -23,7 +26,8 @@ public class DrugStoreValidator : AbstractValidator<DrugStore>
         RuleFor(ds => ds.Number)
             .NotNull().WithMessage(ValidationMessage.NotNull)
             .NotEmpty().WithMessage(ValidationMessage.NotEmpty)
-            .GreaterThan(0).WithMessage(ValidationMessage.PositiveInteger);
+            .GreaterThan(0).WithMessage(ValidationMessage.PositiveInteger)
+            .Must(BeUniqueNumber).WithMessage("Номер аптеки должен быть уникальным в пределах сети.");
 
         // Address.City validation
         RuleFor(ds => ds.Address.City)
@@ -67,5 +71,18 @@ public class DrugStoreValidator : AbstractValidator<DrugStore>
     private bool IsValidIsoCode(string countryIsoCode)
     {
         return ValidIsoCodes.Contains(countryIsoCode.ToUpper());
+    }
+    
+    private bool BeUniqueNumber(int number)
+    {
+        if (ExistingNumbers.Contains(number))
+        {
+            return false; 
+        }
+        else
+        {
+            ExistingNumbers.Add(number); 
+            return true; 
+        }
     }
 }
