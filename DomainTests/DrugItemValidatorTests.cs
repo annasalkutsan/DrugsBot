@@ -12,7 +12,7 @@ public class DrugItemValidatorTests
         var drugId = Guid.NewGuid();
         var drugStoreId = Guid.NewGuid();
         var drug = new Drug("Paracetamol", "PharmaCorp", "USA", new Country("USA", "USA"));
-        var drugStore = new DrugStore("PharmaShop", 143, new Address("Town", "Street", "4"), "053378965" );
+        var drugStore = new DrugStore("PharmaShop", 143, new Address("Town", "Street", "4","456789", "UK"), "053378965" );
         var drugItem = new DrugItem(drugId, drugStoreId, 10.99m, 50, drug, drugStore);
 
         // Assert
@@ -26,7 +26,7 @@ public class DrugItemValidatorTests
         var exception = Assert.Throws<System.Exception>(() => new DrugItem(Guid.NewGuid(), Guid.NewGuid(), 10.99m, -1, 
             new Drug("Paracetamol", "PharmaCorp", "USA", 
                 new Country("USA", "USA")), 
-            new DrugStore("PharmaShop", 143, new Address("Town", "Street", "4"), "053378965" )));
+            new DrugStore("PharmaShop", 143, new Address("Town", "Street", "4", "456789", "UK"), "053378965" )));
 
         // Assert
         Assert.Contains("Count", exception.Message); // Проверяем, что ошибка относится к полю Count

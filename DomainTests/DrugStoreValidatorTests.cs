@@ -9,7 +9,7 @@ public class DrugStoreValidatorTests
     public void ValidateDrugStore_WithValidData()
     {
         // Arrange
-        var address = new Address("CityName", "Main Street", "12A");
+        var address = new Address("CityName", "Main Street", "12A", "456789", "UK");
         var drugStore = new DrugStore("PharmaNetwork", 1, address, "+1234567890");
 
         // Act & Assert
@@ -21,7 +21,7 @@ public class DrugStoreValidatorTests
     public void ValidateDrugStore_WithEmptyDrugNetwork()
     {
         // Arrange
-        var address = new Address("CityName", "Main Street", "12A");
+        var address = new Address("CityName", "Main Street", "12A", "456789", "UK");
 
         // Act & Assert
         var exception = Assert.Throws<Exception>(() => new DrugStore("", 1, address, "+1234567890"));
