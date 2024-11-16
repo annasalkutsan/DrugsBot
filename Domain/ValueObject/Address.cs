@@ -2,13 +2,11 @@
 
 public class Address : BaseValueObject
 {
-    public Address(string city, string street, string house, string postalCode, string country)
+    public Address(string city, string street, string house)
     {
         City = city;
         Street = street;
         House = house;
-        PostalCode = postalCode;
-        Country = country;
     }
 
     /// <summary>
@@ -27,21 +25,11 @@ public class Address : BaseValueObject
     public string House { get; private set; }
     
     /// <summary>
-    /// Почтовый код
-    /// </summary>
-    public string PostalCode { get; private set; }
-    
-    /// <summary>
-    /// Код страны (ISO)
-    /// </summary>
-    public string Country { get; private set; }
-
-    /// <summary>
     /// Возвращает строковое представление адреса.
     /// </summary>
     /// <returns>Строка, представляющая адрес.</returns>
     public override string ToString()
     {
-        return $"{City}, {Street} {House}, {PostalCode}, {Country}";
+        return $"{City}, {Street} {House}";
     }
 }

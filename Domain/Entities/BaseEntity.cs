@@ -1,9 +1,13 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Interfaces;
+using FluentValidation;
+
+namespace Domain.Entities;
 /// <summary>
 /// Базовый класс для сущностей
 /// </summary>
-public abstract class BaseEntity
+public abstract class BaseEntity<T> where T : BaseEntity<T>
 {
+    private readonly List<IDomainEvent> _domainEvents = [];
     protected BaseEntity()
     {
         Id = Guid.NewGuid();
@@ -26,7 +30,7 @@ public abstract class BaseEntity
     /// <returns></returns>
     public override bool Equals(object? obj)
     {
-        if (obj is not BaseEntity entity)
+        if (obj is not BaseEntity<T>  entity)
         {
             return false;
         }
@@ -48,7 +52,7 @@ public abstract class BaseEntity
     /// <summary>
     /// Переопределение оператора равенства
     /// </summary>
-    public static bool operator ==(BaseEntity? left, BaseEntity? right)
+    public static bool operator ==(BaseEntity<T>? left, BaseEntity<T>? right)
     {
         // Проверка на null
         if (left is null && right is null) return true;
@@ -60,8 +64,51 @@ public abstract class BaseEntity
     /// <summary>
     /// Переопределение оператора неравенства
     /// </summary>
-    public static bool operator !=(BaseEntity? left, BaseEntity? right)
+    public static bool operator !=(BaseEntity<T>? left, BaseEntity<T>? right)
     {
         return !(left == right); 
     }
+    
+    /// <summary>
+    /// Выполняет валидацию сущности с использованием указанного валидатора.
+    /// </summary>
+    /// <param name="validator">Валидатор FluentValidator.</param>
+    protected void ValidateEntity(AbstractValidator<T> validator)
+    {
+        var validationResult = validator.Validate((T)this);
+        if (validationResult.IsValid)
+        {
+            return;
+        }
+
+        var errorMessages = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+        throw new ValidationException(errorMessages);
+    }
+    
+    /// <summary>
+    /// Получить доменные события.
+    /// </summary>
+    /// <returns>Список доменных событий</returns>
+    public IReadOnlyList<IDomainEvent> GetDomainEvents()
+    {
+        return _domainEvents.AsReadOnly();
+    }
+
+    /// <summary>
+    /// Очистить доменные события.
+    /// </summary>
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
+    }
+
+    /// <summary>
+    /// Добавить доменное событие.
+    /// </summary>
+    /// <param name="domainEvent">Доменное событие.</param>
+    protected void AddDomainEvent(IDomainEvent domainEvent)
+    {
+        _domainEvents.Add(domainEvent);
+    }
+
 }

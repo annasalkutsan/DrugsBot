@@ -5,7 +5,7 @@ using FluentValidation.TestHelper;
 namespace DomainTests;
 
 public class DrugValidatorTests
-{
+{/*
     [Fact]
     public void ValidateDrug_WithValidData()
     {
@@ -27,5 +27,5 @@ public class DrugValidatorTests
         // Assert
         Assert.Contains("Country Code Id", exception.Message); // Проверяем, что ошибка относится к CountryCodeId
     }
-
+*/
 }

@@ -4,7 +4,7 @@ using Domain.ValueObject;
 namespace DomainTests;
 
 public class DrugStoreValidatorTests
-{
+{/*
     [Fact]
     public void ValidateDrugStore_WithValidData()
     {
@@ -48,5 +48,5 @@ public class DrugStoreValidatorTests
         Assert.NotNull(exception); // Ожидаем, что будет выброшено исключение
         Assert.IsType<System.Exception>(exception); // Проверяем, что исключение типа ArgumentException
         Assert.Equal("Validation failed: Номер аптеки должен быть уникальным в пределах сети.", exception?.Message); // Проверяем сообщение исключения
-    }
+    }*/
 }

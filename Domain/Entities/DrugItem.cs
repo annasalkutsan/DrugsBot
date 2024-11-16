@@ -1,9 +1,10 @@
-﻿using Domain.Validators;
+﻿using Domain.Events;
+using Domain.Validators;
 using FluentValidation.Results;
 
 namespace Domain.Entities;
 
-public class DrugItem : BaseEntity
+public class DrugItem : BaseEntity<DrugItem>
 {
     public DrugItem(Guid drugId, Guid drugStoreId, decimal cost, int count, Drug drug, DrugStore drugStore)
     {
@@ -14,7 +15,7 @@ public class DrugItem : BaseEntity
         Drug = drug;
         DrugStore = drugStore;
 
-        IsValid();
+        ValidateEntity(new DrugItemValidator());
     }
     
     /// <summary>
@@ -45,19 +46,21 @@ public class DrugItem : BaseEntity
     /// <summary>
     /// Количество
     /// </summary>
-    public int Count { get; private set; }
+    public double Count { get; private set; }
     
-    private bool IsValid()
+    /// <summary>
+    /// Обновить количество препарата на складе.
+    /// </summary>
+    /// <param name="count"></param>
+    public void UpdateCount(double count)
     {
-        var validator = new DrugItemValidator();
-        ValidationResult result = validator.Validate(this);
+        var oldCount = Count; // Сохраняем текущее значение
+        Count = count;
 
-        if (!result.IsValid)
-        {
-            var errorMessages = string.Join(" ", result.Errors.Select(e => e.ErrorMessage));
-            throw new Exception("Validation failed: " + errorMessages);
-        }
-        
-        return true;
+        // Валидация
+        ValidateEntity(new DrugItemValidator());
+
+        // Генерируем событие
+        AddDomainEvent(new DrugItemUpdatedEvent(Id, oldCount, count));
     }
 }

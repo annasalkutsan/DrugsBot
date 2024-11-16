@@ -8,5 +8,7 @@
     &lt;TestId&gt;xUnit::BBF7070D-DE60-4B59-952D-DC629332074B::net8.0::DomainTests.DrugStoreValidatorTests.ValidateDrugStore_WithEmptyDrugNetwork_ShouldThrowException&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::BBF7070D-DE60-4B59-952D-DC629332074B::net8.0::DomainTests.DrugStoreValidatorTests.ValidateDrugStore_WithNonUniqueNumber&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::BBF7070D-DE60-4B59-952D-DC629332074B::net8.0::DomainTests.DrugStoreValidatorTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBF7070D-DE60-4B59-952D-DC629332074B::net8.0::DomainTests.DomainEventTests.UpdateCount_ShouldAddDomainEvent&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BBF7070D-DE60-4B59-952D-DC629332074B::net8.0::DomainTests.DomainEventTests.UpdateCount_InvalidCount_ShouldThrowValidationException&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

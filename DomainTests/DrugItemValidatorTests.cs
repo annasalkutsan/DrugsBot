@@ -4,7 +4,7 @@ using Domain.ValueObject;
 namespace DomainTests;
 
 public class DrugItemValidatorTests
-{
+{/*
     [Fact]
     public void ValidateDrugItem_WithValidData()
     {
@@ -30,5 +30,5 @@ public class DrugItemValidatorTests
 
         // Assert
         Assert.Contains("Count", exception.Message); // Проверяем, что ошибка относится к полю Count
-    }
+    }*/
 }

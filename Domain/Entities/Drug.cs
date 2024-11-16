@@ -1,59 +1,45 @@
 ﻿using Domain.Validators;
-using FluentValidation.Results;
 
 namespace Domain.Entities;
 
 /// <summary>
 /// Лекарственный препарат
 /// </summary>
-public class Drug: BaseEntity
+public class Drug : BaseEntity<Drug>
 {
-    public Drug(string name, string manufacturer, string countryCodeId, Country country)
+    public Drug(string name, string manufacturer, string countryCodeId, Country country, Func<string, bool> countryExistsFunc)
     {
         Name = name;
         Manufacturer = manufacturer;
         CountryCodeId = countryCodeId;
         Country = country;
 
-        IsValid();
+        // Вызов валидации через базовый класс с использованием переданной функции проверки
+        ValidateEntity(new DrugValidator(countryExistsFunc));
     }
-    
+
     /// <summary>
-    /// Название лекарственного препарата
+    /// Название препарата.
     /// </summary>
     public string Name { get; private set; }
-    
+
     /// <summary>
-    /// Производитель
+    /// Производитель препарата.
     /// </summary>
     public string Manufacturer { get; private set; }
-    
+
     /// <summary>
-    /// Код страны производителя 
+    /// Код страны производителя.
     /// </summary>
     public string CountryCodeId { get; private set; }
-    
+
     /// <summary>
-    /// Навигационное свойство для страны
+    /// Связь с объектом Country.
     /// </summary>
     public Country Country { get; private set; }
 
     /// <summary>
-    /// Коллекция товаров с данным препаратом
+    /// Навигационное свойство для связи с DrugItem.
     /// </summary>
     public ICollection<DrugItem> DrugItems { get; private set; } = new List<DrugItem>();
-    
-    private bool IsValid()
-    {
-        var validator = new DrugValidator();
-        ValidationResult result = validator.Validate(this);
-
-        if (!result.IsValid)
-        {
-            var errorMessages = string.Join(" ", result.Errors.Select(e => e.ErrorMessage));
-            throw new Exception("Validation failed: " + errorMessages);
-        }
-        
-        return true;
-    }
 }
