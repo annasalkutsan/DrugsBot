@@ -3,6 +3,9 @@ using Domain.ValueObject;
 
 namespace Domain.Entities;
 
+/// <summary>
+/// Профиль пользователя
+/// </summary>
 public sealed class Profile : BaseEntity<Profile>
 {
     public Profile(string externalId, Email? email)

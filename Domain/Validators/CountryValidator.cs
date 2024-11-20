@@ -4,6 +4,9 @@ using Domain.Primitives;
 
 namespace Domain.Validators;
 
+/// <summary>
+/// Валидация для <see cref="Country"/>
+/// </summary>
 public sealed class CountryValidator : AbstractValidator<Country>
 {
     private static readonly HashSet<string> ValidIsoCodes = ["US", "DE", "FR", "GB", "CA", "IT", "ES", "RU"];

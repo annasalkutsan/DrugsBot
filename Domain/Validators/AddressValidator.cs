@@ -4,6 +4,9 @@ using Domain.ValueObject;
 
 namespace Domain.Validators;
 
+/// <summary>
+/// Валидация для <see cref="Address"/>
+/// </summary>
 public sealed class AddressValidator : AbstractValidator<Address>
 {
     public AddressValidator()

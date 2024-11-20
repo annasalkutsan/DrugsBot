@@ -3,6 +3,9 @@ using FluentValidation.Results;
 
 namespace Domain.Entities;
 
+/// <summary>
+/// Страна
+/// </summary>
 public class Country:BaseEntity<Country>
 {
     public Country(string name, string code)

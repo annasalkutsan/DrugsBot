@@ -4,6 +4,9 @@ using FluentValidation;
 
 namespace Domain.Validators;
 
+/// <summary>
+/// Валидация для <see cref="Email"/>
+/// </summary>
 public sealed class EmailValidator : AbstractValidator<Email>
 {
     public EmailValidator()

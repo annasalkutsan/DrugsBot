@@ -4,6 +4,9 @@ using Domain.Primitives;
 
 namespace Domain.Validators;
 
+/// <summary>
+/// Валидация для <see cref="Profile"/>
+/// </summary>
 public sealed class ProfileValidator : AbstractValidator<Profile>
 {
     public ProfileValidator()

@@ -4,6 +4,9 @@ using FluentValidation.Results;
 
 namespace Domain.Entities;
 
+/// <summary>
+/// Аптека
+/// </summary>
 public class DrugStore : BaseEntity<DrugStore>
 {
     public DrugStore(string drugNetwork, int number, Address address, string phoneNumber)

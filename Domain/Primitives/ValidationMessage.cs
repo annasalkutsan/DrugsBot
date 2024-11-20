@@ -1,5 +1,8 @@
 ﻿namespace Domain.Primitives;
 
+/// <summary>
+/// Сообщения для валидации
+/// </summary>
 public static class ValidationMessage
 {
     public const string RequiredField = "Поле {PropertyName} является обязательным.";

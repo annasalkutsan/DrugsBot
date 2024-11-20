@@ -4,6 +4,9 @@ using Domain.Primitives;
 
 namespace Domain.Validators;
 
+/// <summary>
+/// Валидация для <see cref="Drug"/>
+/// </summary>
 public sealed class DrugValidator : AbstractValidator<Drug>
 {
     public DrugValidator(Func<string, bool> countryExistsFunc)

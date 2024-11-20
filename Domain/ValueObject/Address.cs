@@ -1,5 +1,8 @@
 ﻿namespace Domain.ValueObject;
 
+/// <summary>
+/// Адрес
+/// </summary>
 public class Address : BaseValueObject
 {
     public Address(string city, string street, string house)

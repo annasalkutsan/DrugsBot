@@ -3,6 +3,9 @@ using Domain.Entities;
 
 namespace Domain.Validators;
 
+/// <summary>
+/// Валидация для <see cref="DrugItem"/>
+/// </summary>
 public sealed class DrugItemValidator : AbstractValidator<DrugItem>
 {
     public DrugItemValidator()

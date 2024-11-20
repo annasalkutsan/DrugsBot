@@ -4,6 +4,9 @@ using FluentValidation.Results;
 
 namespace Domain.Entities;
 
+/// <summary>
+/// Лекарственный препарат в определенной аптеке
+/// </summary>
 public class DrugItem : BaseEntity<DrugItem>
 {
     public DrugItem(Guid drugId, Guid drugStoreId, decimal cost, int count, Drug drug, DrugStore drugStore)
