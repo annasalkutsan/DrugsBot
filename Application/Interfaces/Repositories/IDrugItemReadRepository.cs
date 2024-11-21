@@ -11,11 +11,10 @@ public interface IDrugItemReadRepository:IReadRepository<DrugItem>
     /// <summary>
     /// Получение сущности по идентификаторам
     /// </summary>
-    /// <param name="drugStoreId">Идентификатор аптеки</param>
-    /// <param name="drugId">Идентификатор препарата</param>
+    /// <param name="id">Идентификатор сущности</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Список препаратов в аптеке</returns>
-    Task<ICollection<DrugItem>> GetByDrugAndStoreAsync(Guid drugStoreId, Guid drugId, CancellationToken cancellationToken = default);
+    Task<ICollection<DrugItem>> GetByDrugAndStoreAsync(Guid id, CancellationToken cancellationToken = default);
         
     /// <summary>
     /// Получение запроса с помощью OData

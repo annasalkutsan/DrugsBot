@@ -8,7 +8,7 @@ namespace Application.UseCase.Queries.DrugItemQueries.Handlers;
 /// Обработчик запроса для получения информации о лекарстве в аптеке по его идентификаторам.
 /// </summary>
 /// <param name="drugItemReadRepository">Репозиторий для чтения данных о лекарствах в аптеке.</param>
-public class GetDrugItemByDrugAndStoreQueryHandler(IDrugItemReadRepository drugItemReadRepository):IRequestHandler<GetDrugItemByDrugAndStoreQuery, ICollection<DrugItem>>
+public class GetDrugItemByIdQueryHandler(IDrugItemReadRepository drugItemReadRepository):IRequestHandler<GetDrugItemByIdQuery, ICollection<DrugItem>>
 {
     /// <summary>
     /// Обрабатывает запрос на получение лекарства в аптеке по идентификаторам.
@@ -16,9 +16,9 @@ public class GetDrugItemByDrugAndStoreQueryHandler(IDrugItemReadRepository drugI
     /// <param name="request">Запрос с идентификаторами лекарства.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Объект <see cref="DrugItem"/> или null, если лекарство не найдено.</returns>
-    public async Task<ICollection<DrugItem>> Handle(GetDrugItemByDrugAndStoreQuery request, CancellationToken cancellationToken)
+    public async Task<ICollection<DrugItem>> Handle(GetDrugItemByIdQuery request, CancellationToken cancellationToken)
     {
-        var response = await drugItemReadRepository.GetByDrugAndStoreAsync(request.DrugId, request.DrugStoreId, cancellationToken);
+        var response = await drugItemReadRepository.GetByDrugAndStoreAsync(request.Id, cancellationToken);
         return response;
     }
 }

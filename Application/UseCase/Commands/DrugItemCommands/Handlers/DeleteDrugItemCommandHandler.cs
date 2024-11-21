@@ -18,7 +18,7 @@ public class DeleteDrugItemCommandHandler(IDrugItemWriteRepository drugItemWrite
     /// <returns></returns>
     public async Task<Unit> Handle(DeleteDrugItemCommand request, CancellationToken cancellationToken)
     {
-        await drugItemWriteRepository.DeleteByDrugAndStoreAsync(request.DrugId, request.DrugStoreId, cancellationToken);
+        await drugItemWriteRepository.DeleteAsync(request.Id, cancellationToken);
         return Unit.Value;
     }
 }
