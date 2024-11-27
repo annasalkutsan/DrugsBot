@@ -7,6 +7,7 @@ namespace Domain.Entities;
 /// </summary>
 public class Drug : BaseEntity<Drug>
 {
+    public Drug(){}
     public Drug(string name, string manufacturer, string countryCodeId, Country country, Func<string, bool> countryExistsFunc)
     {
         Name = name;
