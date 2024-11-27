@@ -5,6 +5,7 @@
 /// </summary>
 public class FavoriteDrug
 {
+    public FavoriteDrug(){}
     public FavoriteDrug(
         Guid profileId,
         Guid drugId,

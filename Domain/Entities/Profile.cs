@@ -8,6 +8,7 @@ namespace Domain.Entities;
 /// </summary>
 public sealed class Profile : BaseEntity<Profile>
 {
+    public Profile(){}
     public Profile(string externalId, Email? email)
     {
         ExternalId = externalId;

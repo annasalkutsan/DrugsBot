@@ -9,6 +9,7 @@ namespace Domain.Entities;
 /// </summary>
 public class DrugItem : BaseEntity<DrugItem>
 {
+    public DrugItem(){}
     public DrugItem(Guid drugId, Guid drugStoreId, decimal cost, int count, Drug drug, DrugStore drugStore)
     {
         DrugId = drugId;

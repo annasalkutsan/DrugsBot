@@ -8,6 +8,7 @@ namespace Domain.Entities;
 /// </summary>
 public class Country:BaseEntity<Country>
 {
+    public Country(){}
     public Country(string name, string code)
     {
         Name = name;
