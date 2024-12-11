@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Domain.Entities;
+using Infrastructure.Dal.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Infrastructure.Dal;
 
@@ -10,7 +12,11 @@ namespace Infrastructure.Dal;
 /// </summary>
 public class DrugsBotDbContext:DbContext
 {
-    public DrugsBotDbContext(DbContextOptions<DrugsBotDbContext> options) : base(options) { }
+    private readonly DataBaseSettings _options;
+    public DrugsBotDbContext(IOptions<DataBaseSettings> options)
+    {
+        _options = options.Value;
+    }
 
     public DrugsBotDbContext()
     { }
@@ -61,9 +67,9 @@ public class DrugsBotDbContext:DbContext
     /// <param name="optionsBuilder">Объект, который используется для конфигурации параметров контекста базы данных.</param>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (!optionsBuilder.IsConfigured)
+        optionsBuilder.UseNpgsql(_options.ConnectionString, (options) =>
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=12345;Database=postgres;");
-        }
+            options.CommandTimeout(_options.CommandTimeout);
+        });
     }
 }
